@@ -1,0 +1,11 @@
+@include mediaSm {
+    .developer {
+        h1 {
+            font-size:3.5rem;
+        }
+    .icons {
+        display:flex;
+        flex-direction:column;
+    }
+    }
+}
