@@ -1,0 +1,157 @@
+@import "config";
+@import "menu";
+* {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+body {
+    @include background();
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+}
+header {
+    margin:0;
+    padding:0;
+    position:fixed;
+    height:100%;
+    width:100%;
+    #navbar {
+        padding-left:1rem;
+        visibility:hidden;
+        width:100%;
+        &.show {
+            visibility:visible;
+        }
+        a {
+            text-decoration:none;
+            color:white;
+            transition: color .5s linear;
+            &:hover {
+                color:blue;
+            }
+        }
+    }
+    .img-brand {
+        width:50%;
+        display:flex;
+        flex-direction:column;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+        float:left;
+        height:100vh;
+        background-color:lighten($primary-color,10);
+        margin:0;
+        padding:0;
+        position:absolute;
+        left:0;
+        top:0;
+        transform: translate3d(0,-100%,0);
+        @include easeOut();
+        .portrait {
+            background-image: url("https://vignette.wikia.nocookie.net/naruto/images/0/09/Naruto_newshot.png/revision/latest/scale-to-width-down/340?cb=20170621101134");
+            width:100%;
+            height:50%;
+        }
+        &.show {
+            transform:translate3d(0,0,0);
+        }
+    }
+    .navbar-links {
+        width:50%;
+        display:flex;
+        flex-direction:column;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        float:left;
+        height:100vh; 
+        background-color:darken($primary-color,10);
+        position:absolute;
+        right:0;
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+
+        &.show {
+            transform:translate3d(0, 0, 0);
+        }
+        .navbar-item {
+            transform: translate3d(100%,0,0);
+            background-color:red;
+            @include easeOut;
+            
+            &.show {
+                transform:translate3d(0, 0, 0);
+            }
+        }
+    }
+}
+
+@for $x from 1 through 3 {
+    .navbar-item:nth-child(#{$x}){
+        &.show {
+            transition-delay: $x * .2s;
+        }
+    }
+}
+
+main {
+    padding: 4rem;
+    width:100%;
+    h1 {
+        font-size: 6rem;
+        color:white;
+        & .text-secondary{
+                color: $secondary-color;
+        }     
+    }
+    .developer-info {
+        margin-top:1rem;
+        width:100%;
+        background-color: rgba(lighten($primary-color, 2),.5);
+        color:white;
+    }
+    .icons {
+        a{
+            padding-right:2rem;
+            color:white;
+            @include easeOut();
+            &:hover {
+                color:red;
+            }
+        }
+    }
+    .bio {
+        display:grid;
+        grid-template-areas: 
+        "bioimage bio bio"
+        "about1 about2 about3";
+        grid-template-columns: repeat(3,1fr);
+        grid-gap:30px;
+    }
+    .photo {
+        width:500px;
+        grid-area: bioimage;
+    }
+    .bio-text {
+        background-color:lighten($primary-color,10);
+        grid-area: bio;
+    }
+    .bio-about1 {
+        background-color:lighten($primary-color,10);
+        grid-area: about1;
+    }
+    .bio-about2 {
+        background-color:lighten($primary-color,10);
+        grid-area: about2;
+    }
+    .bio-about3 {
+        background-color:lighten($primary-color,10);
+        grid-area:about3;
+    }
+}
+
+@import "mobile";
